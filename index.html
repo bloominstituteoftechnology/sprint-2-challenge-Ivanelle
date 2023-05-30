@@ -174,19 +174,33 @@
       //    scrub("aces high", ["high", "aces", "hearts"]) // returns "xxxx xxxx"
       //    scrub("", ["high", "aces""]) // returns ""
       // 🌟 HINT: useful array methods to use are `push`, `indexOf`, `split`, `join`
-      let result = []
+      let check = []
+      const arr = text.split(' ')
 
-      for (let idx in text) {
-        let word = text[idx]
-
-        let modifiedText = ''
-        for (let idx in word) {
-          let char = word[idx]
-          
+      for (let idx in arr) {
+        let word = arr[idx]
+        let fWord = ''
+        let checkF = false
+        
+        // console.log(word)
+        for (let idx in forbidden) {
+          if (word === forbidden[idx]) {
+            checkF = true
+          }
+        }
+        
+        if (checkF === false) {
+          check.push(word)
+        } else if (checkF === true){
+          fWord = Array(word.length+1).join('x')
+          check.push(fWord)
         }
       }
-
+        let result = check.join(' ')
+        return result
+      
     }
+  
 
     // 👉 CHALLENGE 5
     function normalizePhoneNumber() {
